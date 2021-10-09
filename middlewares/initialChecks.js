@@ -1,7 +1,7 @@
-// const validateUsername = username => {
-//     const re = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
-//     return re.test(username);
-// }
+const validateUsername = username => {
+    const re = /^[a-zA-Z0-9_]{5,}[a-zA-Z]+[0-9]*$/;
+    return re.test(username);
+}
 const validateEmail = email => {
 	const re =
 		/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -33,7 +33,7 @@ const initialChecks = (req, res, next) => {
     ) {
         next();
     } else {
-        res.status(401).send("Initital checks failed !!");
+        res.status(401).send("Initital checks failed !!!");
 
     }
     
