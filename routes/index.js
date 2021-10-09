@@ -1,5 +1,6 @@
 var express = require("express");
 var router = express.Router();
+var initialChecks = require("../middlewares/initialChecks");
 
 const {
   userAuth,
@@ -14,7 +15,7 @@ router.get("/", function (req, res, next) {
 });
 
 //Registeration
-router.post("/register/:role", async (req, res) => {
+router.post("/register/:role", initialChecks, async (req, res) => {
   const { role } = req.params;
   await userRegister(req.body, role, res);
 });
@@ -32,7 +33,7 @@ router.post("/register/:role", async (req, res) => {
 // });
 
 //login
-router.post("/login/:role", async (req, res) => {
+router.post("/login/:role", initialChecks, async (req, res) => {
   const { role } = req.params;
   await userLogin(req.body, role, res);
 });
