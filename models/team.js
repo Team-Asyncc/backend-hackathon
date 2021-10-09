@@ -40,4 +40,4 @@ const Team = sequelize.define("Teams", {
 //specifying bl_id as foreign key from User model's attribute "id"
 Team.belongsTo(User, { foreignKey: "id" });
 
-module.exports = User;
+module.exports = Team;
