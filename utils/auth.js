@@ -124,21 +124,21 @@ const validateEmail = async (email) => {
   return user;
 };
 
-// const serializeUser = (user) => {
-//   return {
-//     username: user.username,
-//     email: user.email,
-//     name: user.name,
-//     _id: user.id,
-//     updatedAt: user.updatedAt,
-//     createdAt: user.createdAt,
-//   };
-// };
+const serializeUser = (user) => {
+  return {
+    username: user.username,
+    email: user.email,
+    name: user.name,
+    _id: user.id,
+    updatedAt: user.updatedAt,
+    createdAt: user.createdAt,
+  };
+};
 
 module.exports = {
   userAuth,
   userLogin,
   checkRole,
   userRegister,
-  // serializeUser,
+  serializeUser,
 };
