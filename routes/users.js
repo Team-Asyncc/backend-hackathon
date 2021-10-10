@@ -1,9 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const user = require('../models/user');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+
+router.get('/:userName', async function (req, res, next) {
+  const { userName } = req.params;
+  const userData = await user.findOne({ where: { username: userName } });
+  if (!userData) {
+    res.send('Not found!');
+  }
+  const { id, firstName, lastName, username, email, role } = userData;
+  res.json({ id, firstName, lastName, username, email, role });
 });
 
 module.exports = router;
