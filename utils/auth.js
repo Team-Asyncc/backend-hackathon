@@ -111,7 +111,7 @@ const checkRole = (roles) => (req, res, next) => {
 
 const validateUsername = async (username) => {
   //find the row where the username is found
-  let user = await User.findOne({ where: { username } });
+  let user = await User.findOne({ where: { username:username } });
   console.log("validate username ", user);
 
   //will return null if user not found

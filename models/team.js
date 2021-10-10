@@ -28,16 +28,16 @@ const Team = sequelize.define("Teams", {
     allowNull: false,
     unique: true,
   },
-  bl_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: User,
-      key: "id",
-    },
-  },
+  // bl_id: {
+  //   type: DataTypes.INTEGER,
+  //   references: {
+  //     model: User,
+  //     key: "id",
+  //   },
+  // },
 });
 
 //specifying bl_id as foreign key from User model's attribute "id"
-Team.belongsTo(User, { foreignKey: "id" });
+// Team.belongsTo(User, { foreignKey: "id" });
 
 module.exports = Team;
