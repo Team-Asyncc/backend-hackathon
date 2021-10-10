@@ -6,7 +6,7 @@ var logger = require("morgan");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-
+var batchleader = require("./routes/batchleader");
 var passport = require("passport");
 
 var app = express();
@@ -25,7 +25,8 @@ app.use(passport.initialize());
 require("./middlewares/passport")(passport);
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/users", usersRouter);  
+app.use("/bl", batchleader);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
