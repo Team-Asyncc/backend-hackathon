@@ -7,8 +7,11 @@ const {
   userLogin,
   checkRole,
   userRegister,
-  // serializeUser,
+  serializeUser,
 } = require("../utils/auth.js");
+
+const addNewTeam = require("../utils/addNewTeam");
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
@@ -33,7 +36,7 @@ router.post("/register/:role", initialChecks, async (req, res) => {
 // });
 
 //login
-router.post("/login/:role", initialChecks, async (req, res) => {
+router.post("/login/:role", async (req, res) => {
   const { role } = req.params;
   await userLogin(req.body, role, res);
 });
@@ -63,7 +66,7 @@ router.get(
 router.get(
   "/team-leader-protected",
   userAuth,
-  checkRole(["team-leader"]),
+  checkRole(["tl"]),
   async (req, res) => {
     return res.send("only team-leaders can access this route");
   }
@@ -72,7 +75,7 @@ router.get(
 router.get(
   "/vice-team-leader-protected",
   userAuth,
-  checkRole(["vice-team-leader"]),
+  checkRole(["vtl"]),
   async (req, res) => {
     return res.send("only vice-team-leader can access this route");
   }
@@ -81,10 +84,14 @@ router.get(
 router.get(
   "/batch-leader-protected",
   userAuth,
-  checkRole(["batch-leader"]),
+  checkRole(["bl"]),
   async (req, res) => {
     return res.send("only batch-leader can access this route");
   }
 );
 
+router.post("/add-team", (req, res) => {
+  // const { team } = req.query;
+  addNewTeam(req, res);
+});
 module.exports = router;
