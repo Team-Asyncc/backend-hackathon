@@ -36,21 +36,6 @@ const addNewTeam = async (req, res) => {
 
 const validateTeam = async (team) => {
   let teamExists = await Team.findOne({ where: { teamName: team } });
-  console.log(`
-  ***********************
-  
-  
-  
-  
-  
-  
-  
-  ${teamExists}
-  
-  
-  
-  
-  **********************`);
   return teamExists;
 };
 
