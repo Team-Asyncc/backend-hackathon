@@ -111,7 +111,7 @@ const checkRole = (roles) => (req, res, next) => {
 
 const validateUsername = async (username) => {
   //find the row where the username is found
-  let user = await User.findOne({ where: { username } });
+  let user = await User.findOne({ where: { username:username } });
   console.log("validate username ", user);
 
   //will return null if user not found
@@ -124,21 +124,21 @@ const validateEmail = async (email) => {
   return user;
 };
 
-// const serializeUser = (user) => {
-//   return {
-//     username: user.username,
-//     email: user.email,
-//     name: user.name,
-//     _id: user.id,
-//     updatedAt: user.updatedAt,
-//     createdAt: user.createdAt,
-//   };
-// };
+const serializeUser = (user) => {
+  return {
+    username: user.username,
+    email: user.email,
+    name: user.name,
+    _id: user.id,
+    updatedAt: user.updatedAt,
+    createdAt: user.createdAt,
+  };
+};
 
 module.exports = {
   userAuth,
   userLogin,
   checkRole,
   userRegister,
-  // serializeUser,
+  serializeUser,
 };
