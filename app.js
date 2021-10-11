@@ -8,6 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var passport = require("passport");
+const registerBatchLeader = require("./contollers/registerBatchLeader");
 
 var app = express();
 
@@ -26,12 +27,13 @@ require("./middlewares/passport")(passport);
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/",registerBatchLeader)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
+app.listen(8081);
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development

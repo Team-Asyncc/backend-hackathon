@@ -21,18 +21,19 @@ const initialChecks = (req, res, next) => {
     console.log(req.body);
 
     if (
-        // typeof username === 'string' &&
+        typeof username === 'string' &&
         typeof email === 'string' &&
         typeof password === 'string' &&
         typeof confirmPassword === 'string' &&
         email.length > 0 &&
         password.length > 0 &&
         confirmPassword === password &&
-        //validateUsername(username) &&
+        validateUsername(username) &&
          validateEmail(email) && validatePassword(password)
     ) {
         next();
     } else {
+        console.log();
         res.status(401).send("Initital checks failed !!!");
 
     }
