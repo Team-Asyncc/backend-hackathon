@@ -1,10 +1,9 @@
 const User = require("../models/user");
 const bcrypt = require("bcrypt")
-const jwt = require("jsonwebtoken");
 const registerBatchLeader = async (req, res)=>{
     const {firstName, lastName, email, password, username} = req.body;
     try {
-        const alreadyExists = await User.findOne({ where: {email: email } });
+        const alreadyExists = await User.findOne({where:{  email:"email"}});
         console.log("checking of aldready exists", alreadyExists);
         if (alreadyExists) {
           res.status(401).send("Oops! Email already exists");

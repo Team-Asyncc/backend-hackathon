@@ -8,7 +8,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
 var passport = require("passport");
-const registerBatchLeader = require("./contollers/registerBatchLeader");
+const registerBatchLeader = require("./routes/batchleader");
 
 var app = express();
 
