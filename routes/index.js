@@ -11,6 +11,7 @@ const {
 } = require("../utils/auth.js");
 
 const addNewTeam = require("../utils/addNewTeam");
+const addNewTeamMember = require("../utils/addNewTeamMember");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -90,8 +91,14 @@ router.get(
   }
 );
 
-router.post("/add-team", (req, res) => {
+router.post("/add-team", async (req, res) => {
   // const { team } = req.query;
-  addNewTeam(req, res);
+  await addNewTeam(req, res);
 });
+
+router.post("/add-new-team-member", async (req, res) => {
+  const { username, team } = req.query;
+  await addNewTeamMember(username, team, res);
+});
+
 module.exports = router;
