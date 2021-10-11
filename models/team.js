@@ -1,12 +1,12 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database");
+const User = require("./user");
 
 const Team = sequelize.define("Teams", {
   //Model attributes
   teamId: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    unique: true,
     primaryKey: true,
   },
   teamName: {
@@ -16,28 +16,25 @@ const Team = sequelize.define("Teams", {
   },
   numMembers: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    defaultValue: 2,
   },
   tl: {
     type: DataTypes.STRING,
-    allowNull: false,
     unique: true,
   },
   vtl: {
     type: DataTypes.STRING,
-    allowNull: false,
     unique: true,
   },
-  // bl_id: {
-  //   type: DataTypes.INTEGER,
-  //   references: {
-  //     model: User,
-  //     key: "id",
-  //   },
-  // },
+  bl_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      table: "Users",
+      key: "id",
+    },
+  },
 });
 
-//specifying bl_id as foreign key from User model's attribute "id"
-// Team.belongsTo(User, { foreignKey: "id" });
+Team.belongsTo(User, { foreignKey: "bl_id" });
 
 module.exports = Team;
