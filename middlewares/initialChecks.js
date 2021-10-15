@@ -15,25 +15,27 @@ const validatePassword = (password) => {
 };
 
 const initialChecks = (req, res, next) => {
-  const { username, email, password, confirmPassword } = req.body;
-  console.log(req.body);
+    const {username, email, password, confirmPassword } = req.body;
+    console.log(req.body);
 
-  if (
-    // typeof username === 'string' &&
-    typeof email === "string" &&
-    typeof password === "string" &&
-    typeof confirmPassword === "string" &&
-    email.length > 0 &&
-    password.length > 0 &&
-    confirmPassword === password &&
-    // validateUsername(username) &&
-    validateEmail(email) &&
-    validatePassword(password)
-  ) {
-    next();
-  } else {
-    res.status(401).send("Initital checks failed !!!");
-  }
-};
+    if (
+        typeof username === 'string' &&
+        typeof email === 'string' &&
+        typeof password === 'string' &&
+        typeof confirmPassword === 'string' &&
+        email.length > 0 &&
+        password.length > 0 &&
+        confirmPassword === password &&
+        validateUsername(username) &&
+         validateEmail(email) && validatePassword(password)
+    ) {
+        next();
+    } else {
+        console.log();
+        res.status(401).send("Initital checks failed !!!");
+
+    }
+    
+}
 
 module.exports = initialChecks;
